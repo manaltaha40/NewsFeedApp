@@ -21,6 +21,7 @@ const styles = StyleSheet.create(
             justifyContent: 'center',
             backgroundColor:'white',
             borderRadius:8,
+            marginTop:8
         },
         searchInput:{
             padding: 8,

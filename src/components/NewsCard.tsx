@@ -1,33 +1,36 @@
 //import liraries
-import moment from 'moment';
 import React from 'react';
 import { View, Text, StyleSheet, Image ,Dimensions} from 'react-native';
 import { News } from '../data/Interfaces';
 import UnavailableImage from '../assets/unavailable-img.png'
 import { checkVaildUrl } from '../utils/StringUtils';
+import { formatDate } from '../utils/DateUtils';
 
 type NewsCardProps = {
  item:News
+ onPress:()=>void
 }
 const {height} = Dimensions.get('window')
-const NewsCard:React.FC<NewsCardProps> = ({item}) => {
+const NewsCard:React.FC<NewsCardProps> = ({item,onPress}) => {
     return (
         <View style={styles.container}>
              {checkVaildUrl(item.imageUrl) ? 
              (<Image 
                 source ={{ uri: item.imageUrl}}
-                style={styles.cradImage}/>) : 
+                style={styles.cardImage}/>) : 
             (<Image 
                 source ={ UnavailableImage}
-                style={styles.cradImage}/>)}
+                style={styles.cardImage}/>)}
           
             <Text
-                style ={styles.title}>
+                style ={styles.title}
+                numberOfLines ={3}
+                onPress = {onPress}>
                {item.title}
             </Text> 
             <Text
                 style ={styles.publishAt}>
-               {moment(item.publishedAt).format('LLL')}
+               {formatDate(item.publishedAt)}
             </Text> 
         </View>
     );
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
         marginBottom:16
       
     },
-    cradImage:{
+    cardImage:{
         width:'100%',
         height:'60%',
         resizeMode:'cover',

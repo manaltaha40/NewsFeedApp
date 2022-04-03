@@ -5,10 +5,11 @@ import { News } from '../data/Interfaces';
 import NewsCard from './NewsCard';
 
 type NewsListProps = {
-    title:string,
+    title:string
     data:[News]
+    onPress:(item:News)=>void
 }
-const NewsList:React.FC<NewsListProps> = ({title,data}) => {
+const NewsList:React.FC<NewsListProps> = ({title,data,onPress}) => {
     return (
         <>
             <Text style ={styles.title}>
@@ -18,7 +19,9 @@ const NewsList:React.FC<NewsListProps> = ({title,data}) => {
                 data={data}
                 keyExtractor={(item)=> item.id}
                 showsVerticalScrollIndicator= {false}
-                renderItem = {(row)=> <NewsCard  item ={row.item}/>}> 
+                renderItem = {(row)=> <NewsCard  item ={row.item} onPress ={()=>{
+                    onPress(row.item)
+                }}/>}> 
 
             </FlatList>
         </>

@@ -18,7 +18,10 @@ export async function getNewsService(category = 'general') {
             description:artical.description,
             publishedAt:artical.publishedAt,
             author:artical.author,
-            content:artical.content
+            content:artical.content,
+            sourceName : artical.source.id,
+            articalLink:artical.url
+            
         }
     })
     return news;
