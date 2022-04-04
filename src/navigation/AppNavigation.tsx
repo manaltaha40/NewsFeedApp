@@ -1,27 +1,29 @@
 
-  import React from 'react';
-  import {NavigationContainer} from '@react-navigation/native';
-  import {createNativeStackNavigator} from '@react-navigation/native-stack';
-  import Routes from './Routes';
+import React from 'react';
+import { useColorScheme } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Routes from './Routes';
 import HomeScreen from '../screens/home/HomeScreen';
 import DetailedScreen from '../screens/details/DetailedScreen';
-import Colors from '../utils/Colors';
+import { CustomLightTheme } from '../theme/modes/light/CustomLightTheme';
+import { CustomDarkTheme } from '../theme/modes/dark/CustomeDarkTheme';
+import { strings } from '../locale/strings';
 
   
   const StackNaivgatior = createNativeStackNavigator();
-  const HomeScreenTitle = 'News Main Screen'
-  const DetailedScreenTitle = 'News Detailed Screen'
+  
   const AppNavigation = () => {
+    const scheme = useColorScheme();
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={scheme === 'dark' ? CustomDarkTheme: CustomLightTheme}>
         <StackNaivgatior.Navigator initialRouteName={Routes.Home}>
           <StackNaivgatior.Screen
             name={Routes.Home}
             component={HomeScreen}
             options={{
               headerShown: true,
-              headerStyle: {backgroundColor: Colors.appBackground},
-              title: HomeScreenTitle,
+              title: strings.homeScreenTitle,
             }}
           />
           <StackNaivgatior.Screen
@@ -29,8 +31,7 @@ import Colors from '../utils/Colors';
             component={DetailedScreen}
             options={{
                 headerShown: true,
-                headerStyle: {backgroundColor: Colors.appBackground},
-                title:DetailedScreenTitle 
+                title:strings.detailedScreenTitle
             }}
           />
         </StackNaivgatior.Navigator>

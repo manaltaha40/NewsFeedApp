@@ -1,10 +1,11 @@
 //import liraries
 import React from 'react';
 import { View, Text, StyleSheet, Image ,Dimensions} from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import { News } from '../data/Interfaces';
-import UnavailableImage from '../assets/unavailable-img.png'
-import { checkVaildUrl } from '../utils/StringUtils';
-import { formatDate } from '../utils/DateUtils';
+import UnavailableImage from '../assets/unavailable.png'
+import { checkVaildUrl } from '../utils/utils';
+import { formatDate } from '../utils/utils';
 
 type NewsCardProps = {
  item:News
@@ -12,8 +13,9 @@ type NewsCardProps = {
 }
 const {height} = Dimensions.get('window')
 const NewsCard:React.FC<NewsCardProps> = ({item,onPress}) => {
+    const { colors } = useTheme();
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,{backgroundColor:colors.card}]}>
              {checkVaildUrl(item.imageUrl) ? 
              (<Image 
                 source ={{ uri: item.imageUrl}}
@@ -23,13 +25,13 @@ const NewsCard:React.FC<NewsCardProps> = ({item,onPress}) => {
                 style={styles.cardImage}/>)}
           
             <Text
-                style ={styles.title}
+                style ={[styles.title,{color:colors.textColor}]}
                 numberOfLines ={3}
                 onPress = {onPress}>
                {item.title}
             </Text> 
             <Text
-                style ={styles.publishAt}>
+                style ={[styles.publishAt,{color:colors.hintColor}]}>
                {formatDate(item.publishedAt)}
             </Text> 
         </View>
@@ -40,7 +42,6 @@ const NewsCard:React.FC<NewsCardProps> = ({item,onPress}) => {
 const styles = StyleSheet.create({
     container: {
         height:height/3,
-        backgroundColor: 'white',
         borderRadius:16,
         paddingHorizontal:4,
         paddingVertical:4,
@@ -60,8 +61,7 @@ const styles = StyleSheet.create({
     },
     publishAt:{
         fontSize:14,
-        marginTop: 8,
-        color:'#656060'
+        marginTop: 4
     }
 });
 

@@ -1,5 +1,6 @@
 import { View, TextInput ,StyleSheet,Text} from 'react-native'
 import React from 'react'
+import { useTheme } from '@react-navigation/native';
 
 type SearchBarProps ={
     searchPlaceHolder:string
@@ -7,9 +8,10 @@ type SearchBarProps ={
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({searchPlaceHolder , onSearch}) => {
+   const { colors } = useTheme();
   return (
-    <View style = {styles.container}>
-        <TextInput style ={styles.searchInput}
+    <View style = {[styles.container,{backgroundColor:colors.searchBarBg}]}>
+        <TextInput style ={[styles.searchInput,{color:colors.textColor}]}
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="always"
@@ -24,7 +26,6 @@ const styles = StyleSheet.create(
         container:{
             height:50,
             justifyContent: 'center',
-            backgroundColor:'white',
             borderRadius:8,
             marginTop:8
         },

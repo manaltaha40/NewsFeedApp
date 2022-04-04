@@ -1,8 +1,8 @@
 //import liraries
 import React from 'react';
-import { Pressable,View, Text, StyleSheet } from 'react-native';
-import Colors from '../utils/Colors';
-
+import { Image ,Pressable,View, Text, StyleSheet } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import ErrorImage from '../assets/error.png'
 type ErrorViewProps = {
     errorViewText:string
     errorViewBtnText:string
@@ -10,19 +10,23 @@ type ErrorViewProps = {
    }
 // create a component
 const ErrorView :React.FC<ErrorViewProps> = ({errorViewText,errorViewBtnText,onRetry}) => {
+    const { colors } = useTheme();
     return (
         <View style={styles.errorView}>
-            <Text style={styles.errorText}>
-         {errorViewText}
-        </Text>
-        <Pressable
-           onPress={onRetry}
-           style={styles.errorViewBtn}>
-        <Text
-            style={styles.errorViewBtnText}>
-        {errorViewBtnText}
-      </Text>
-    </Pressable>
+          <Image 
+                source ={ ErrorImage}
+                style={styles.errorImage}/>
+          <Text style={[styles.errorText,{color:colors.textColor}]}>
+            {errorViewText}
+          </Text>
+          <Pressable
+            onPress={onRetry}
+            style={styles.errorViewBtn}>
+            <Text
+              style={[styles.errorViewBtnText,{color:colors.redColor}]}>
+              {errorViewBtnText}
+            </Text>
+           </Pressable>
       </View>
     );
 };
@@ -34,10 +38,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
       },
+      errorImage:{
+        width:'100%',
+        height:200,
+        resizeMode:'cover',
+        borderRadius:16
+    },
       errorText:{
         fontSize: 18,
-        color:Colors.redColor,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop:8
       },
 
       errorViewBtn: {
@@ -49,7 +59,6 @@ const styles = StyleSheet.create({
       errorViewBtnText: {
         fontWeight:'bold',
         fontSize:18,
-        color: Colors.redColor,
       },
     
 });

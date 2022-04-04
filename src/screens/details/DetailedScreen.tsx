@@ -1,57 +1,56 @@
 //import liraries
 import React from 'react';
-import { Text ,Image , StyleSheet ,SafeAreaView, ScrollView, Alert} from 'react-native';
-import Colors from '../../utils/Colors';
-import UnavailableImage from '../../assets/unavailable-img.png'
-import { checkVaildUrl } from '../../utils/StringUtils';
+import { Text ,Image , StyleSheet, ScrollView, Alert} from 'react-native';
+import UnavailableImage from '../../assets/unavailable.png'
+import { checkVaildUrl } from '../../utils/utils';
 import { News } from '../../data/Interfaces';
-import { formatDate } from '../../utils/DateUtils';
-import { isCanOpenTheUrl, openURL } from '../../utils/NavigationUtils';
+import { formatDate } from '../../utils/utils';
+import { isCanOpenTheUrl, openURL } from '../../utils/utils';
+import { useTheme } from '@react-navigation/native';
+import { strings } from '../../locale/strings';
 
 
 // create a component
 const DetailedScreen = ({route}) => {
-    const artical:News = route.params.paramKey
-    const authorNameText= `Author Name: ${artical.author}`
-    const sourceNameText= `Published in : ${artical.sourceName}`
-    const articalLinkText= `For more information visit the original link : `
-    const openLinkError= `Don't know how to open this URL: ${artical.articalLink}`
-console.log(artical);
+    const { colors } = useTheme();
+    const artical:News = route?.params?.paramKey
+    const openLinkError= `${strings.openLinkError} ${artical?.articalLink}`
+
 
     return (
-        <ScrollView style = {styles.root}>
-             {checkVaildUrl(artical.imageUrl) ? 
+        <ScrollView style = {[styles.root,{backgroundColor:colors.background}]}>
+             {checkVaildUrl(artical?.imageUrl) ? 
              (<Image 
-                source ={{ uri: artical.imageUrl}}
+                source ={{ uri: artical?.imageUrl}}
                 style={styles.image}/>) : 
             (<Image 
                 source ={ UnavailableImage}
                 style={styles.image}/>)}
              <Text
-                style ={styles.title}>
-               {artical.title}
+                style ={[styles.title,{color:colors.textColor}]}>
+               {artical?.title}
             </Text>  
             <Text
-                style ={styles.publishAt}>
-               { formatDate(artical.publishedAt)}
+                style ={[styles.publishAt,{color:colors.hintColor}]}>
+               { formatDate(artical?.publishedAt)}
             </Text>  
             <Text
-                style ={styles.discription}>
-               {artical.description}
+                style ={[styles.discription,{color:colors.textColor}]}>
+               {artical?.description}
             </Text> 
-            {artical.author?( <Text
-                style ={styles.author}>
-             { authorNameText}
+            {artical?.author?( <Text
+                style ={[styles.author,{color:colors.textColor}]}>
+            {strings.AuthorName}{artical?.author}
             </Text>  ): null} 
-            {artical.articalLink?
-            (<Text>
-                {articalLinkText}
+            {artical?.articalLink?
+            (<Text style ={{color:colors.textColor}}>
+                {strings.articalLinkText}
                 <Text
-                    style ={styles.link}
+                    style ={[styles.link,{color:colors.linkColor}]}
                     onPress = {()=>{
-                        isCanOpenTheUrl(artical.articalLink).then(supported => {
+                        isCanOpenTheUrl(artical?.articalLink).then(supported => {
                             if(supported)
-                                openURL(artical.articalLink)
+                                openURL(artical?.articalLink)
                             else
                             Alert.alert(openLinkError);
 
@@ -60,14 +59,14 @@ console.log(artical);
                         })
                         
                         }}>
-                    { artical.articalLink}
+                    { artical?.articalLink}
                 </Text> 
             </Text>  
             ): null} 
-            {artical.sourceName?
+            {artical?.sourceName?
             ( <Text
-                style ={styles.sourceName}>
-             {sourceNameText}
+                style ={[styles.sourceName,{color:colors.textColor}]}>
+             {strings.sourceNameText}{artical?.sourceName}
             </Text>  ): null} 
         
              
@@ -80,7 +79,6 @@ console.log(artical);
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        backgroundColor: Colors.appBackground,
         paddingStart:8,
         paddingEnd:8,
         paddingBottom:8
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     },
     image:{
         width:'100%',
-        height:250,
+        height:300,
         resizeMode:'cover',
     },
     title:{
@@ -99,7 +97,6 @@ const styles = StyleSheet.create({
     publishAt:{
         fontSize:14,
         marginTop: 8,
-        color:Colors.hintColor,
         alignSelf:'flex-end'
     },
     discription:{
@@ -115,7 +112,6 @@ const styles = StyleSheet.create({
     },
     link:{
         fontSize:14,
-        color:Colors.hintColor ,
         
     },
     sourceName:{

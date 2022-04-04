@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import { News } from '../data/Interfaces';
 import NewsCard from './NewsCard';
+import { useTheme } from '@react-navigation/native';
 
 type NewsListProps = {
     title:string
@@ -12,9 +13,10 @@ type NewsListProps = {
     onRefresh:()=>void
 }
 const NewsList:React.FC<NewsListProps> = ({title,data,onPress,refreshing,onRefresh}) => {
+    const { colors } = useTheme();
     return (
         <>
-            <Text style ={styles.title}>
+            <Text style ={[styles.title,{color:colors.textCoror}]}>
                {title}
             </Text>
             <FlatList 
