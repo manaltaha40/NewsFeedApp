@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     publishAt:{
         fontSize:14,
         marginTop: 8,
-        color:'#656060',
+        color:Colors.hintColor,
         alignSelf:'flex-end'
     },
     discription:{
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     },
     link:{
         fontSize:14,
-        color:'blue' ,
+        color:Colors.hintColor ,
         
     },
     sourceName:{

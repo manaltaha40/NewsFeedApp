@@ -3,12 +3,17 @@ import React from 'react'
 
 type SearchBarProps ={
     searchPlaceHolder:string
+    onSearch:(query:string)=>void
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({searchPlaceHolder}) => {
+const SearchBar: React.FC<SearchBarProps> = ({searchPlaceHolder , onSearch}) => {
   return (
     <View style = {styles.container}>
         <TextInput style ={styles.searchInput}
+            autoCapitalize="none"
+            autoCorrect={false}
+            clearButtonMode="always"
+            onChangeText={queryText => onSearch(queryText)}
             placeholder = {searchPlaceHolder}
         />
     </View>
