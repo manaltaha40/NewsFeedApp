@@ -9,11 +9,12 @@
  */
 
 import React from 'react';
-import AppNavigation from './src/navigation/AppNavigation';
+import SplashScreen from './src/screens/splash/SplashScreen';
 
 const App = () => {
+
   return (
-   <AppNavigation/>
+    <SplashScreen/>
   );
 };
 

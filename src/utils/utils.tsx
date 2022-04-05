@@ -1,8 +1,9 @@
 import moment from 'moment';
 import {Linking } from "react-native";
-import { News } from '../data/Interfaces';
+import { News } from '../models/News';
 import { strings } from '../locale/strings';
 import RNRestart from 'react-native-restart';
+import { storeData } from '../storage/AsyncStorage';
 
 let urlRegex =  /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
 
@@ -37,7 +38,11 @@ export const searchInArray = (query:string , originalArray:News[]):News[]=>{
   }
 export const changeLaguage = (languageKey:string) => {
     strings.setLanguage(languageKey)
-    //RNRestart.Restart();
+    storeData('lang',languageKey).then((value)=>{
+      RNRestart.Restart();
+    }
+    )
+   
 } 
 export const getCurrentDispledLaguage = ():string => {
         return strings.getLanguage();

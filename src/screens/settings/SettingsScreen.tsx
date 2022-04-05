@@ -5,15 +5,17 @@ import { strings } from "../../locale/strings";
 import supportedLanguage from "../../locale/supportedLang";
 import { changeLaguage, getCurrentDispledLaguage } from "../../utils/utils";
 import { useTheme } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native'
 
 
 // create a component
 const SettingsScreen = () => {
-    const {navigate} = useNavigation();
     const { colors } = useTheme();
     const currentLang = getCurrentDispledLaguage()
     const [language, setLanguage] = useState(currentLang);
+    const onChnageLang =(lang:string)=>{
+        setLanguage(lang)
+        changeLaguage(lang)
+    }
     return (
         <View style={styles.container}>
             <Text style = {styles.title}
@@ -21,17 +23,12 @@ const SettingsScreen = () => {
             <Button 
                 color={(language == supportedLanguage.Ar)?colors.btnActive:colors.btnInactive}
                 onPress={()=>{
-                    setLanguage(supportedLanguage.Ar)
-                    changeLaguage(supportedLanguage.Ar)
-                    navigate.goBack();
-              
+                    onChnageLang(supportedLanguage.Ar)
             }} title = {strings.arabic}/> 
             <Button 
             color={(language == supportedLanguage.En)?colors.btnActive:colors.btnInactive}
             onPress={()=>{
-                setLanguage(supportedLanguage.En)
-                changeLaguage(supportedLanguage.En)
-                navigate.goBack();
+               onChnageLang(supportedLanguage.En)
             }} title= {strings.english}/> 
         </View>
     );

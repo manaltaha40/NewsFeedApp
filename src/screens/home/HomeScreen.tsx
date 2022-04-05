@@ -1,4 +1,4 @@
-import { SafeAreaView,StyleSheet, ActivityIndicator,View ,Text  } from 'react-native'
+import { SafeAreaView,StyleSheet, ActivityIndicator,View } from 'react-native'
 import React , { useEffect, useState }from 'react'
 import { useTheme } from '@react-navigation/native';
 import SearchBar from '../../components/SearchBar'
@@ -32,9 +32,7 @@ const HomeScreen = () => {
         .then(data => {
           setNewsData(data);
           setFilteredNewsData(data);
-          setError(null);
-          console.log("enter faunction then");
-          
+          setError(null);          
         })
         .catch(error => {
           setError(error);

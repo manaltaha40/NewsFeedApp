@@ -1,4 +1,5 @@
-import { ArticleApiResponse, News } from '../data/Interfaces';
+import { ArticleApiResponse } from '../models/ArticleApiResponse';
+import { News } from '../models/News';
 import { API_KEY, endpoint, country } from './Constants'
 
 export async function getNewsService(category = 'general') {

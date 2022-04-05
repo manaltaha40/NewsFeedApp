@@ -3,7 +3,7 @@ import React from 'react';
 import { Text ,Image , StyleSheet, ScrollView, Alert} from 'react-native';
 import UnavailableImage from '../../assets/unavailable.png'
 import { checkVaildUrl } from '../../utils/utils';
-import { News } from '../../data/Interfaces';
+import { News } from '../../models/News';
 import { formatDate } from '../../utils/utils';
 import { isCanOpenTheUrl, openURL } from '../../utils/utils';
 import { useTheme } from '@react-navigation/native';

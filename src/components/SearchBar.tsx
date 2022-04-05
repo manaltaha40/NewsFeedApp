@@ -1,4 +1,4 @@
-import { View, TextInput ,StyleSheet,Text} from 'react-native'
+import { View, TextInput ,StyleSheet} from 'react-native'
 import React from 'react'
 import { useTheme } from '@react-navigation/native';
 

@@ -2,10 +2,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image ,Dimensions} from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { News } from '../data/Interfaces';
+import { News } from '../models/News';
 import UnavailableImage from '../assets/unavailable.png'
-import { checkVaildUrl } from '../utils/utils';
-import { formatDate } from '../utils/utils';
+import { checkVaildUrl,formatDate } from '../utils/utils';
 
 type NewsCardProps = {
  item:News

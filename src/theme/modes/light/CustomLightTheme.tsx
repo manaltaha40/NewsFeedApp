@@ -13,6 +13,7 @@ export const CustomLightTheme = {
       tabBarActiveTintColor:'tomato',
       tabBarInactiveTintColor: '#9FA1A8',
       btnActive:"#841584",
-      btnInactive:"#9FA1A8"
+      btnInactive:"#9FA1A8",
+      splashBg:'#FFF3F4'
     },
   };

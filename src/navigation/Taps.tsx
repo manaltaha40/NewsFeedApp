@@ -4,8 +4,8 @@ import HomeScreen from '../screens/home/HomeScreen';
 import SettingsScreen from '../screens/settings/SettingsScreen';
 import Routes from './Routes';
 import { strings } from '../locale/strings';
-import { View,Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import TapBarIcon from '../components/TapBarIcon';
 
 
 const Tab = createBottomTabNavigator();
@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 const Tabs = () =>{
     const { colors } = useTheme();
   return (
-    <Tab.Navigator screenOptions= {({ route }) => ({
+    <Tab.Navigator screenOptions= {() => ({
         tabBarActiveTintColor: colors.tabBarActiveTintColor,
         tabBarInactiveTintColor: colors.tabBarInactiveTintColor,
     })}>
@@ -23,15 +23,9 @@ const Tabs = () =>{
         options={{
             headerShown: true,
             title: strings.homeScreenTitle,
-            tabBarIcon: ({ focused }) => {
+            tabBarIcon: () => {
                 return (
-                  <View>
-                    <Image
-                      source={require("../assets/ic_home.png")}
-                      resizeMode="contain"
-                      style={{ width: 40 }}
-                    />
-                  </View>
+                  <TapBarIcon source={require("../assets/ic_home.png")}/>
                 );
               },
           }} 
@@ -42,15 +36,9 @@ const Tabs = () =>{
             options={{
                 headerShown: true,
                 title: strings.settingsScreenTitle,
-                tabBarIcon: ({ focused }) => {
+                tabBarIcon: () => {
                     return (
-                      <View>
-                        <Image
-                          source={require("../assets/ic_settings.png")}
-                          resizeMode="contain"
-                          style={{ width: 40 }}
-                        />
-                      </View>
+                      <TapBarIcon source={require("../assets/ic_settings.png")}/>
                     );
                   }
               }}/>
@@ -58,4 +46,3 @@ const Tabs = () =>{
   );
 }
 export default Tabs;
-//tabBar={(props) => <TabBar{...props}/>}

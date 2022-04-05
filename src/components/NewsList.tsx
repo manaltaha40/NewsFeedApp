@@ -1,7 +1,7 @@
 //import liraries
 import React from 'react';
 import { Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
-import { News } from '../data/Interfaces';
+import { News } from '../models/News';
 import NewsCard from './NewsCard';
 import { useTheme } from '@react-navigation/native';
 

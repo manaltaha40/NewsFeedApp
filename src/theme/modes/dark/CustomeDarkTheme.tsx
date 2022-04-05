@@ -12,6 +12,7 @@ export const CustomDarkTheme = {
       tabBarActiveTintColor:'tomato',
       tabBarInactiveTintColor: 'white',
       btnActive:"#841584",
-      btnInactive:"#D6D7DB"
+      btnInactive:"#D6D7DB",
+      splashBg:'#FFF3F4'
     },
   };
