@@ -29,21 +29,23 @@ const DetailedScreen = ({route}) => {
              <Text
                 style ={[styles.title,{color:colors.textColor}]}>
                {artical?.title}
-            </Text>  
-            <Text
+            </Text>
+            {artical?.publishedAt?( <Text
                 style ={[styles.publishAt,{color:colors.hintColor}]}>
                { formatDate(artical?.publishedAt)}
-            </Text>  
-            <Text
+            </Text> ):null}  
+            
+            {artical?.description?(<Text
                 style ={[styles.discription,{color:colors.textColor}]}>
                {artical?.description}
-            </Text> 
+            </Text>): null}
+            
             {artical?.author?( <Text
                 style ={[styles.author,{color:colors.textColor}]}>
             {strings.AuthorName}{artical?.author}
             </Text>  ): null} 
             {artical?.articalLink?
-            (<Text style ={{color:colors.textColor}}>
+            (<Text style ={{color:colors.textColor , marginTop:8}}>
                 {strings.articalLinkText}
                 <Text
                     style ={[styles.link,{color:colors.linkColor}]}
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     },
     link:{
         fontSize:14,
-        
+        textDecorationLine: 'underline'
     },
     sourceName:{
         fontSize:14,

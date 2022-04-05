@@ -9,6 +9,7 @@ import DetailedScreen from '../screens/details/DetailedScreen';
 import { CustomLightTheme } from '../theme/modes/light/CustomLightTheme';
 import { CustomDarkTheme } from '../theme/modes/dark/CustomeDarkTheme';
 import { strings } from '../locale/strings';
+import Tabs from './Taps';
 
   
   const StackNaivgatior = createNativeStackNavigator();
@@ -17,13 +18,12 @@ import { strings } from '../locale/strings';
     const scheme = useColorScheme();
     return (
       <NavigationContainer theme={scheme === 'dark' ? CustomDarkTheme: CustomLightTheme}>
-        <StackNaivgatior.Navigator initialRouteName={Routes.Home}>
+        <StackNaivgatior.Navigator initialRouteName={Routes.Taps}>
           <StackNaivgatior.Screen
-            name={Routes.Home}
-            component={HomeScreen}
+            name={Routes.Taps}
+            component={Tabs}
             options={{
-              headerShown: true,
-              title: strings.homeScreenTitle,
+              headerShown: false
             }}
           />
           <StackNaivgatior.Screen

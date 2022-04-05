@@ -5,9 +5,13 @@ export const CustomDarkTheme = {
       ...DarkTheme.colors,
       loadingColor :'#5500dc',
       hintColor:'#D6D7DB',
-      linkColor:'blue',
+      linkColor:'#005EA5',
       redColor:'#E2383F',
       textColor:'#CED4D6',
-      searchBarBg:'white'
+      searchBarBg:'#797979',
+      tabBarActiveTintColor:'tomato',
+      tabBarInactiveTintColor: 'white',
+      btnActive:"#841584",
+      btnInactive:"#D6D7DB"
     },
   };

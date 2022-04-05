@@ -55,7 +55,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style = {[styles.root, {backgroundColor: colors.background} ]}>
-      {filteredNewsData?.length > 0 ?
+      {filteredNewsData?
         <SearchBar searchPlaceHolder ={strings.placeholder} onSearch ={search} />
         : null} 
     

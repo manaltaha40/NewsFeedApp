@@ -16,8 +16,11 @@ export let strings = new LocalizedStrings({
    articalLinkText: "For more information visit the original link : ",
    AuthorName:"Author Name:",
    sourceNameText:"Published in : ",
-   openLinkError : "can't open this URL: "
-
+   openLinkError : "can't open this URL: ",
+   settingsScreenTitle:"Settings",
+   selectLanguage:"Select language",
+   arabic:"Arabic",
+   english:"English"
  },
  ar:{
     homeScreenTitle : "الآخبار",
@@ -30,6 +33,10 @@ export let strings = new LocalizedStrings({
     articalLinkText: "لمزيد من التفاصيل ،زور الموقع الاصلي ",
     AuthorName:"صاحب الخبر :",
     sourceNameText: "نُشر في ",
-    openLinkError : "لا يمكن فتح هذا الرابط"
+    openLinkError : "لا يمكن فتح هذا الرابط",
+    settingsScreenTitle:"الإعدادات",
+    selectLanguage:"اختر لغة",
+    arabic:"عربي",
+   english:"انجليزي"
   }
 });

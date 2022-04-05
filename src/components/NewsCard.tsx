@@ -26,7 +26,7 @@ const NewsCard:React.FC<NewsCardProps> = ({item,onPress}) => {
           
             <Text
                 style ={[styles.title,{color:colors.textColor}]}
-                numberOfLines ={3}
+                numberOfLines ={2}
                 onPress = {onPress}>
                {item.title}
             </Text> 

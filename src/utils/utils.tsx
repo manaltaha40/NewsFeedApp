@@ -1,6 +1,8 @@
 import moment from 'moment';
 import {Linking } from "react-native";
 import { News } from '../data/Interfaces';
+import { strings } from '../locale/strings';
+import RNRestart from 'react-native-restart';
 
 let urlRegex =  /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
 
@@ -33,3 +35,10 @@ export const searchInArray = (query:string , originalArray:News[]):News[]=>{
     else
       return originalArray
   }
+export const changeLaguage = (languageKey:string) => {
+    strings.setLanguage(languageKey)
+    //RNRestart.Restart();
+} 
+export const getCurrentDispledLaguage = ():string => {
+        return strings.getLanguage();
+} 
