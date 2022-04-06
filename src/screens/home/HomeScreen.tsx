@@ -12,12 +12,11 @@ import { strings } from '../../locale/strings';
 import { searchInArray } from '../../utils/utils';
 import { News } from '../../models/News';
 
-
+let isDeepLinkOpened = false
 const HomeScreen = () => {
   const { colors } = useTheme();
   const {navigate} = useNavigation();
   const route = useRoute();
- 
   
   const [filteredNewsData, setFilteredNewsData] = useState(null)
   const [newsData, setNewsData] = useState([])
@@ -36,10 +35,7 @@ const HomeScreen = () => {
         .then(data => {
           setNewsData(data);
           setFilteredNewsData(data);
-          setError(null);  
-          //goToDetailedScreenBYDeepLink(data) 
-          
-                
+          setError(null);      
         })
         .catch(error => {
           setError(error);
@@ -57,6 +53,7 @@ const HomeScreen = () => {
     console.log(route);
     
     if(route?.params?.articalId && (data.length > route?.params?.articalId && route?.params?.articalId >0)){
+      isDeepLinkOpened = true
       navigate(Routes.DetailedScreen,{
         paramKey:data[route?.params?.articalId],
       });
@@ -65,11 +62,13 @@ const HomeScreen = () => {
 
   useEffect(() => {
     console.log( "call useEffect");
+    isDeepLinkOpened = false
     loadData(false)
   }, [])  
   useEffect(() => {
     console.log( "call useEffect");
-    goToDetailedScreenBYDeepLink(newsData)
+    if(!isDeepLinkOpened)
+      goToDetailedScreenBYDeepLink(newsData)
   }, [newsData,route?.params])  
 
   return (
