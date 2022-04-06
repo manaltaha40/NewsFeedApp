@@ -13,12 +13,12 @@ const Tab = createBottomTabNavigator();
 const Tabs = () =>{
     const { colors } = useTheme();
   return (
-    <Tab.Navigator screenOptions= {() => ({
+    <Tab.Navigator  screenOptions= {() => ({
         tabBarActiveTintColor: colors.tabBarActiveTintColor,
         tabBarInactiveTintColor: colors.tabBarInactiveTintColor,
     })}>
       <Tab.Screen 
-        name={Routes.Home}
+        name={Routes.MainScreen}
         component={HomeScreen}
         options={{
             headerShown: true,
@@ -31,7 +31,7 @@ const Tabs = () =>{
           }} 
           />
       <Tab.Screen 
-            name= {Routes.Settings} 
+            name= {Routes.Settings}
             component={SettingsScreen} 
             options={{
                 headerShown: true,

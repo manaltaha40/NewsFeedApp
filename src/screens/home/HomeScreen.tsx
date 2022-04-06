@@ -1,6 +1,6 @@
 import { SafeAreaView,StyleSheet, ActivityIndicator,View } from 'react-native'
 import React , { useEffect, useState }from 'react'
-import { useTheme } from '@react-navigation/native';
+import { useRoute, useTheme } from '@react-navigation/native';
 import SearchBar from '../../components/SearchBar'
 import NewsList from '../../components/NewsList'
 import { getNewsService } from '../../api/GetNewsService'
@@ -10,11 +10,15 @@ import ErrorView from '../../components/ErrorView'
 import EmptyView from '../../components/EmptyView'
 import { strings } from '../../locale/strings';
 import { searchInArray } from '../../utils/utils';
+import { News } from '../../models/News';
 
 
 const HomeScreen = () => {
   const { colors } = useTheme();
   const {navigate} = useNavigation();
+  const route = useRoute();
+ 
+  
   const [filteredNewsData, setFilteredNewsData] = useState(null)
   const [newsData, setNewsData] = useState([])
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +36,10 @@ const HomeScreen = () => {
         .then(data => {
           setNewsData(data);
           setFilteredNewsData(data);
-          setError(null);          
+          setError(null);  
+          //goToDetailedScreenBYDeepLink(data) 
+          
+                
         })
         .catch(error => {
           setError(error);
@@ -46,10 +53,24 @@ const HomeScreen = () => {
   const onRefresh =()=>{
     loadData(true) 
   }
+  const goToDetailedScreenBYDeepLink=(data:News[])=>{
+    console.log(route);
+    
+    if(route?.params?.articalId && (data.length > route?.params?.articalId && route?.params?.articalId >0)){
+      navigate(Routes.DetailedScreen,{
+        paramKey:data[route?.params?.articalId],
+      });
+    }  
+  }
 
   useEffect(() => {
+    console.log( "call useEffect");
     loadData(false)
-}, [])  
+  }, [])  
+  useEffect(() => {
+    console.log( "call useEffect");
+    goToDetailedScreenBYDeepLink(newsData)
+  }, [newsData,route?.params])  
 
   return (
     <SafeAreaView style = {[styles.root, {backgroundColor: colors.background} ]}>

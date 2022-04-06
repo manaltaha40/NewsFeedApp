@@ -45,7 +45,7 @@ const DetailedScreen = ({route}) => {
             {strings.AuthorName}{artical?.author}
             </Text>  ): null} 
             {artical?.articalLink?
-            (<Text style ={{color:colors.textColor , marginTop:8}}>
+            (<Text style ={{color:colors.textColor , marginVertical:8}}>
                 {strings.articalLinkText}
                 <Text
                     style ={[styles.link,{color:colors.linkColor}]}

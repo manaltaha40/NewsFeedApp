@@ -1,8 +1,8 @@
 const Routes = {
     DetailedScreen: 'DetailedScreen',
-    Home: 'HomeScreen',
+    Home: 'Home',
     Settings:'Settings',
-    Taps:'Taps'
+    MainScreen:'MainScreen'
   };
   
   export default Routes;

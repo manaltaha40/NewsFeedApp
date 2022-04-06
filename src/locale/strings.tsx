@@ -7,7 +7,7 @@ export let strings = new LocalizedStrings({
  
  en:{
     homeScreenTitle : "the News",
-   detailedScreenTitle:"News Detailes",
+   detailedScreenTitle:"artical Details",
    placeholder :"Search here ..",
    newsListTitle  : "Global News :",
    emptyViewText : "There is no articals",

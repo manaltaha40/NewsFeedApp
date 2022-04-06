@@ -1,5 +1,5 @@
 //import liraries
-import React from 'react';
+import React, { LegacyRef, Ref, RefObject } from 'react';
 import { Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import { News } from '../models/News';
 import NewsCard from './NewsCard';
@@ -10,9 +10,10 @@ type NewsListProps = {
     data:[News]
     onPress:(item:News)=>void
     refreshing:boolean
-    onRefresh:()=>void
+    onRefresh:()=>void,
+    refContainer:LegacyRef<FlatList>
 }
-const NewsList:React.FC<NewsListProps> = ({title,data,onPress,refreshing,onRefresh}) => {
+const NewsList:React.FC<NewsListProps> = ({title,data,onPress,refreshing,onRefresh, refContainer}) => {
     const { colors } = useTheme();
     return (
         <>
