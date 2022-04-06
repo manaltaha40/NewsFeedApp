@@ -61,12 +61,10 @@ const HomeScreen = () => {
   }
 
   useEffect(() => {
-    console.log( "call useEffect");
     isDeepLinkOpened = false
     loadData(false)
   }, [])  
   useEffect(() => {
-    console.log( "call useEffect");
     if(!isDeepLinkOpened)
       goToDetailedScreenBYDeepLink(newsData)
   }, [newsData,route?.params])  
