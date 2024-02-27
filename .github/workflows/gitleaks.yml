@@ -1,19 +1,26 @@
-name: gitleaks
+name: gitleaks PR
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   pull_request:
     types: [opened, synchronize]
 jobs:
   scan:
-    name: gitleaks
+    name: ${{ startsWith(github.event.head.ref, 'pull/') && 'gitleaks' || 'gitleaks PR' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+      - name: Run gitleaks action
+        uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
           GITLEAKS_ENABLE_COMMENTS: true
           GITLEAKS_ENABLE_UPLOAD_ARTIFACT: true
           GITLEAKS_ENABLE_SUMMARY: true
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."       
