@@ -1,4 +1,4 @@
-name: ${{ github.event_name == 'pull_request' && 'gitleaks PR' || 'gitleaks' }}
+name: gitleaks PR
 on:
   pull_request:
     types: [opened, synchronize]
