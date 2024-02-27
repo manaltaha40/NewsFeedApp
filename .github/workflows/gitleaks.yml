@@ -4,7 +4,7 @@ on:
     types: [opened, synchronize]
 jobs:
   scan:
-    name: "gitleaks PR"
+    name: "gitleaks"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout code"
