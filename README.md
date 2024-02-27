@@ -47,5 +47,6 @@ news on screen
       'voisNews://news/settings'-> navigate to settings screen
 
 
+![Deploy badge](https://github.com/manaltaha40/NewsFeedApp/actions/workflows/gitleaks.yml/badge.svg)
 
 
