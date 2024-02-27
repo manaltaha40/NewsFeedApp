@@ -3,8 +3,8 @@ on:
   pull_request:
     types: [opened, synchronize]
 jobs:
-  setup:
-    name: gitleaks PR
+  scan:
+    name: ${{ startsWith(github.event.head.ref, 'pull/') && 'gitleaks' || 'gitleaks PR' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
