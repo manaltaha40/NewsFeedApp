@@ -3,8 +3,8 @@ on:
   pull_request:
     types: [opened, synchronize]
 jobs:
-  scan:
-    name: gitleaks
+  setup:
+    name: gitleaks PR
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
