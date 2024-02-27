@@ -1,4 +1,5 @@
 name: gitleaks PR
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   pull_request:
     types: [opened, synchronize]
@@ -19,3 +20,7 @@ jobs:
           GITLEAKS_ENABLE_COMMENTS: true
           GITLEAKS_ENABLE_UPLOAD_ARTIFACT: true
           GITLEAKS_ENABLE_SUMMARY: true
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."       
